@@ -164,52 +164,6 @@
 
 		<div class="navbar_mega_menu">
 
-			{{--
-                <div class="dropdown_mega_menu">
-
-				<button class="dropbtn">
-					Operation <i class="fa fa-caret-down"></i>
-				</button>
-
-	    		<div class="dropdown_mega_menu_content">
-
-					<div class="row">
-
-						<div class="column">
-							<h5>Operational Email </h5>
-							<a href={{route('individual_email')}}>Individual Email</a>
-							<a href=#></a>
-							<a href=#></a>
-						</div>
-
-                        <div class="column">
-							<h5>Operational SMS</h5>
-							<a href=#></a>
-							<a href=#></a>
-							<a href=#></a>
-						</div>
-
-						<div class="column">
-							<h5>List </h5>
-							<a href=#></a>
-							<a href=#></a>
-							<a href=#></a>
-						</div>
-
-						<div class="column">
-							<h5>Reports </h5>
-							<a href=#></a>
-							<a href=#></a>
-							<a href=#></a>
-						</div>
-
-					</div>
-
-				</div>
-
-			    </div>
-            --}}
-
             <div class="dropdown_mega_menu">
                 <button class="dropbtn">
                     Master
@@ -224,6 +178,7 @@
                     <a href="{{route('reinitialization_reason')}}">Reinitialization Reason</a>
                     <a href="{{route('user_officer')}}">User/Officer</a>
                     <a href="{{route('zone')}}">Zone</a>
+                    <a href="{{route('buyer')}}">Buyer</a>
                 </div>
             </div>
 
@@ -261,7 +216,6 @@
 		                <i class="fa fa-caret-down"></i>
                 	</button>
 					<div class="dropdown_single_menu_content">
-	                	<a href="#">Profile</a>
 	                	<a href="{{route('password_reset')}}">Password Reset</a>
 	                    <form method="POST" action="{{ route('logout') }}">
 	                          @csrf

@@ -12,9 +12,13 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 
+use App\Traits\TimeZone;
+
 use Carbon\Carbon;
 
 class BreakdownReportController extends Controller{
+
+    use TimeZone;
 
     public function __construct(){
 
@@ -54,11 +58,6 @@ class BreakdownReportController extends Controller{
 		$officer_filter = '';
 		$sub_status_filter = '';
 		$status_filter = '';
-
-
-		// echo '<pre>';
-		// print_r($input);
-		// echo '</pre>';
 
 		// Tid
 		if( isset($input['from_tid']) && isset($input['to_tid']) ){
@@ -386,35 +385,8 @@ class BreakdownReportController extends Controller{
 		foreach($resultset as $row){
 
 			$col_count = 1;
-            $timeZoneName = '';
-            $slaMet = '';
 
-            $tblBreakdown = DB::table('breakdown')->where('ticketno', $row->ticketno)->first();
-            if($tblBreakdown){
-
-                $zoneId = $tblBreakdown->zone_id;
-
-                $tblZone = DB::table('zones')->where('zone_id', $zoneId)->first();
-                if($tblZone){
-
-                    $recomendedTime = $tblZone->resolution_time;
-                    $timeZoneName = $tblZone->zone_name;
-                    $reportedDateTime = Carbon::createFromFormat('Y-m-d H:i:s', $tblBreakdown->saved_on);
-                    $expectedDateTime = $reportedDateTime->addHours($recomendedTime);
-                    $doneDateTime =  $tblBreakdown->done_date_time;
-
-                    if( is_null($doneDateTime) ){
-                    }else{
-
-                        $doneDateTime =  Carbon::createFromFormat('Y-m-d H:i:s', $tblBreakdown->done_date_time);
-                        if ($expectedDateTime->gte($doneDateTime)) {
-                            $slaMet = 'Yes';
-                        }else{
-                            $slaMet = 'No';
-                        }
-                    }
-                }
-            }
+            $timeZone = $this->checkSLA( 'breakdown', $row->ticketno);
 
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->ticketno);  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->tdate);  $col_count++;
@@ -444,8 +416,8 @@ class BreakdownReportController extends Controller{
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->sub_status);  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, ucfirst($row->status));  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->done_date_time);  $col_count++;
-            $sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $timeZoneName);  $col_count++;
-            $sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $slaMet);  $col_count++;
+            $sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $timeZone['timeZoneName']);  $col_count++;
+            $sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $timeZone['slaMet']);  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $this->YesNo($row->email));  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->email_on);  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $this->YesNo($row->cancel));  $col_count++;

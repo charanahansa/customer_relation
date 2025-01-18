@@ -134,6 +134,7 @@ use App\Http\Controllers\System_Admin\Master\SubStatusController;
 use App\Http\Controllers\System_Admin\Master\ReInitializationReasonController;
 use App\Http\Controllers\System_Admin\Master\BankOfficerController;
 use App\Http\Controllers\System_Admin\Master\UserOfficerController;
+use App\Http\Controllers\System_Admin\Master\BuyerController;
 use App\Http\Controllers\System_Admin\Master\ZoneController;
 
 use App\Http\Controllers\System_Admin\List\MasterListController;
@@ -605,6 +606,11 @@ Route::get('reinitialization_reason_updation/{id}', [ReinitializationReasonContr
 
 Route::get('user_officer', [UserOfficerController::class, 'index'])->name('user_officer');
 Route::post('user_officer/save', [UserOfficerController::class, 'saveData'])->name('user_officer.save');
+Route::get('user_updation/{id}', [UserOfficerController::class, 'updateUser'])->name('user_updation');
+
+Route::get('buyer', [BuyerController::class, 'index'])->name('buyer');
+Route::post('buyer/save', [BuyerController::class, 'saveBuyer'])->name('buyer.save');
+Route::get('buyer_updation/{id}', [BuyerController::class, 'updateBuyer'])->name('buyer_updation');
 
 Route::get('zone', [ZoneController::class, 'index'])->name('zone');
 Route::post('zone_creation', [ZoneController::class, 'saveZone'])->name('zone_creation');

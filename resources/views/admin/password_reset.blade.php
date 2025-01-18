@@ -1,4 +1,4 @@
-@extends('layouts.mng')
+@extends('layouts.per')
 
 @section('title')
     Password Reset
@@ -17,14 +17,14 @@
 				<form method="POST" name="form_name" action="{{route('password_reset_process')}}" style = " margin-left: auto; margin-right: auto; text-align: left;">
 
 					@csrf
-					
-					<?php echo $pr['attributes']['process_message'] ?> 
+
+					<?php echo $pr['attributes']['process_message'] ?>
 
 					<div class="mb-1 row">
 						<label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
 						<label for="staticEmail" class="col-sm-2 col-form-label">{{Auth::user()->email}}</label>
 					</div>
-					
+
 					<div class="mb-1 row">
 						<label for="inputPassword" class="col-sm-2 col-form-label">Current Password</label>
 						<div class="col-sm-3">

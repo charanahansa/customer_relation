@@ -33,7 +33,7 @@ class SparePartReceiveProcess extends Model {
 				$hw_bin['in_id'] = $spr_id;
 				$hw_bin['in_ref'] = 'SPR';
 				$hw_bin['spare_part_serial'] =  DB::table('spare_part')->where('spare_part_id', $spare_part_receive_note['spare_part_id'])->value('spare_part_serial');
-				
+
 
 				DB::table('hw_bin')->insert($hw_bin);
 
@@ -47,7 +47,7 @@ class SparePartReceiveProcess extends Model {
             $process_result['front_end_message'] = "Saving Process is Completed successfully.";
             $process_result['back_end_message'] = "Commited.";
 
-			
+
             return $process_result;
 
 		// }catch(\Exception $e){
@@ -69,7 +69,7 @@ class SparePartReceiveProcess extends Model {
 						from		spare_part_request
 						group by	requested_by
 						order by	requested_by  ";
-					   
+
 		$result = DB::connection('mysql2')->select($sql_query);
 
 		return $result;
@@ -81,7 +81,7 @@ class SparePartReceiveProcess extends Model {
 						from		hw_parts
 						where		active = 1
 						order by	part_name  ";
-					   
+
 		$result = DB::connection('mysql2')->select($sql_query);
 
 		return $result;
@@ -103,11 +103,14 @@ class SparePartReceiveProcess extends Model {
 										inner join spare_part sp on sprn.spare_part_id = sp.spare_part_id
 						where		1=1 ". $query_filter ."
 					   order by		spr_id desc, spr_id ";
-					   
+
 		$result = DB::connection('mysql')->select($sql_query);
 
 		return $result;
 	}
-	
+
+
+    
+
 
 }

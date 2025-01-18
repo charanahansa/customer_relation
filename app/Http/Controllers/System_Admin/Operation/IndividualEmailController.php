@@ -5,6 +5,9 @@ namespace App\Http\Controllers\System_Admin\Operation;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
 use App\Models\Management\Breakdown;
 use App\Models\Management\NewInstallation;
 use App\Models\Management\SoftwareUpdation;
@@ -14,7 +17,11 @@ use App\Models\Tmc\InOut\InvestigationQuotation;
 
 use Illuminate\Support\Facades\Mail;
 
+use App\Traits\BulkSmsTrait;
+
 class IndividualEmailController extends Controller {
+
+    use BulkSmsTrait;
 
     public function __construct(){
 
@@ -65,6 +72,34 @@ class IndividualEmailController extends Controller {
             }
 
         }
+
+
+        try {
+
+            $colSmsRequest = DB::table('sms_request')->where('sent', 0)->where('saved_on', '>=', '2025-01-15 00:00:01')->get();
+            foreach ($colSmsRequest as $value) {
+
+                $response = $this->sendSms(
+                    ucfirst($value->ref) . ' Ticket',
+                    'Ticket No. ' . $value->ticketno,
+                    $value->office_mobile,
+                    $value->message
+                );
+
+                if (isset($response['serverRef'])) {
+
+                    DB::table('sms_request')->where('id', $value->id)->update(['sent' => 1, 'sent_at' => now()]);
+                } else {
+
+                    Log::warning('SMS sending failed for request ID: ' . $value->req_id . '  ' . $value->ref . '  ' . $value->ticketno);
+                }
+            }
+
+        } catch (\Exception $e) {
+
+            Log::error('SMS sending failed', $e->getMessage() . ' ' . $e->getLine());
+        }
+
 
         return view('system_admin.system_admin_dashboard');
     }
@@ -129,7 +164,6 @@ class IndividualEmailController extends Controller {
         }
 
     }
-
 
     private function new_installation_email_process($first_row){
 

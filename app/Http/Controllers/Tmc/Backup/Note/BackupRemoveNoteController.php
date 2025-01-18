@@ -20,6 +20,7 @@ use App\Models\Master\SubStatus;
 use App\Models\Master\TerminalModel;
 use App\Models\Master\Status;
 use App\Models\Master\CourierProvider;
+use App\Models\Master\Zone;
 use App\Models\Tmc\Backup\BackupProcess;
 
 class BackupRemoveNoteController extends Controller {
@@ -40,6 +41,7 @@ class BackupRemoveNoteController extends Controller {
 
 		$data['model'] = $objModel->get_models();
 		$data['bank'] = $objBank->get_bank();
+        $data['zone'] = Zone::where('active', 1)->get();
 		$data['officer'] = $objUser->getActiveTmcAndFieldOfficers();
 		$data['courier'] = $objCourier->getActiveCourierProviders();
 		$data['sub_status'] = $objSubStatus->getTmcBackupRemoveSubStatus();
@@ -58,6 +60,7 @@ class BackupRemoveNoteController extends Controller {
 		$attributes['bank'] = 0;
 		$attributes['tid'] = '';
 		$attributes['merchant'] = '';
+        $attributes['zone_id'] = 0;
 		$attributes['backup_serialno'] = '';
         $attributes['backup_model'] = 0;
 		$attributes['replaced_serialno'] = '';
@@ -94,6 +97,7 @@ class BackupRemoveNoteController extends Controller {
 				$attributes['bank'] = $row->bank;
 				$attributes['tid'] = $row->tid;
 				$attributes['merchant'] = $row->merchant;
+                $attributes['zone_id'] = $row->zone_id;
 				$attributes['backup_serialno'] = $row->backup_serialno;
 				$attributes['backup_model'] = $row->backup_model;
 				$attributes['replaced_serialno'] = $row->replaced_serialno;
@@ -143,6 +147,7 @@ class BackupRemoveNoteController extends Controller {
 				$attributes['bank'] = $input['bank'];
 				$attributes['tid'] = $input['tid'];
 				$attributes['merchant'] = $input['merchant'];
+                $attributes['zone_id'] = $input['zone_id'];
 				$attributes['backup_serialno'] = $input['backup_serialno'];
 				$attributes['backup_model'] = $input['backup_model'];
 				$attributes['replaced_serialno'] = $input['replaced_serialno'];
@@ -181,6 +186,7 @@ class BackupRemoveNoteController extends Controller {
 		$process['process_status'] = TRUE;
 		$process['brn_no'] = $request->ticket_number;
 
+        $data['zone'] = Zone::where('active', 1)->get();
 		$data['officer'] = $objUser->getActiveTmcAndFieldOfficers();
 		$data['courier'] = $objCourier->getActiveCourierProviders();
 		$data['model'] = $objModel->get_models();
@@ -202,6 +208,7 @@ class BackupRemoveNoteController extends Controller {
         $objSubStatus = new SubStatus();
         $objStatus = new Status();
 
+        $data['zone'] = Zone::where('active', 1)->get();
 		$data['officer'] = $objUser->getActiveTmcAndFieldOfficers();
 		$data['courier'] = $objCourier->getActiveCourierProviders();
 		$data['model'] = $objModel->get_models();
@@ -269,6 +276,7 @@ class BackupRemoveNoteController extends Controller {
 			$input['bank'] = $request->bank;
 			$input['tid']= $request->tid;
             $input['merchant'] = $request->merchant;
+            $input['zone_id'] = $request->zone_id;
 			$input['backup_serialno'] = $request->backup_serialno;
 			$input['backup_model'] = $request->backup_model;
 			$input['replaced_serialno'] = $request->replaced_serialno;
@@ -284,6 +292,7 @@ class BackupRemoveNoteController extends Controller {
 			$rules['bank'] = array( new ZeroValidation('Bank', $request->bank));
 			$rules['tid']= array('required', 'max:10');
             $rules['merchant'] = array('required', 'max:130');
+            $rules['zone_id'] = array( new ZeroValidation('Zone', intval($request->zone_id)));
 			$rules['backup_serialno'] = array('required', 'max:12');
 			$rules['backup_model'] = array( new ZeroValidation('Backup Model', $request->backup_model));
 			$rules['replaced_serialno'] = array('required', 'max:12');
@@ -354,6 +363,7 @@ class BackupRemoveNoteController extends Controller {
 		$brn_array['bank'] = $request->bank;
 		$brn_array['tid'] = $request->tid;
 		$brn_array['merchant'] = $request->merchant;
+        $brn_array['zone_id'] = intval($request->zone_id);
 		$brn_array['backup_serialno'] = $request->backup_serialno;
 		$brn_array['backup_model'] = $request->backup_model;
 		$brn_array['replaced_serialno'] = $request->replaced_serialno;

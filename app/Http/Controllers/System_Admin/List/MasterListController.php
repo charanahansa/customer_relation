@@ -16,6 +16,8 @@ use App\Models\Master\RelevantDetail;
 use App\Models\Master\ActionTaken;
 use App\Models\Master\ReinitializationReason;
 use App\Models\Master\Zone;
+use App\Models\Master\Buyer;
+use App\Models\User;
 
 class MasterListController extends Controller {
 
@@ -45,6 +47,12 @@ class MasterListController extends Controller {
                 break;
             case 'zone':
                 $data = Zone::where('zone_name', 'like', "%$search%")->orderBy('zone_id', 'asc')->get();
+                break;
+            case 'user':
+                $data = User::where('name', 'like', "%$search%")->orderBy('id', 'asc')->get();
+                break;
+            case 'buyer':
+                $data = Buyer::where('buyer_name', 'like', "%$search%")->orderBy('buyer_id', 'asc')->get();
                 break;
             default:
                 $data = Zone::all();

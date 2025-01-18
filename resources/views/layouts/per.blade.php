@@ -5,24 +5,16 @@
 
 	<link rel="stylesheet" href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css>
 
-	<!-- Bootstrap 5.0 -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
+	<!-- Bootstrap 4.6 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <!-- Date Time Picker -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href=".\asset\date_time_picker\jquery.datetimepicker.min.css">
+    <script type="text/javascript" src=".\asset\date_time_picker\jquery.js"></script>
+    <script type="text/javascript" src=".\asset\date_time_picker\jquery.datetimepicker.full.js"></script>
 
 	<style>
-
 		* {
 	          box-sizing: border-box;
 	    }
@@ -58,12 +50,6 @@
 
               float: left;
               overflow: hidden;
-        }
-
-        .dropdown_user_menu{
-
-            float:right;
-            overflow: hidden;
         }
 
         .dropdown_mega_menu .dropbtn {
@@ -178,74 +164,9 @@
 
 		<div class="navbar_mega_menu">
 
-            <a href="">Home</a>
-
             <div class="dropdown_mega_menu">
                 <button class="dropbtn">
-                    Ticket Creation
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown_single_menu_content">
-                    <a href="#">Profile Creation</a>
-                    <a href="#">Profile Updation</a>
-                    <a href="#">Profile Conversion</a>
-                    <a href="#">Profile Removal</a>
-                    <a href="#">Profile Sharing</a>
-                </div>
-            </div>
-
-            <div class="dropdown_mega_menu">
-                <button class="dropbtn">
-                    Pool
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown_single_menu_content">
-                    <a href="#">Ticketing Pool</a>
-                    <a href="#">Terminal Programming Pool</a>
-                </div>
-            </div>
-
-            <div class="dropdown_mega_menu">
-                <button class="dropbtn">
-                    List
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown_single_menu_content">
-                    <a href="#">Breakdown List</a>
-                    <a href="#">New Installation List</a>
-                    <a href="#">Re Initialization List</a>
-                    <a href="#">Software Updating List</a>
-                    <a href="#">Terminal Replacement List</a>
-                    <a href="#">Backup Removal List</a>
-                    <a href="#">New Installation List</a>
-                </div>
-            </div>
-
-            <div class="dropdown_mega_menu">
-                <button class="dropbtn">
-                    Validation
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown_single_menu_content">
-                    <a href="#">Profile Validation </a>
-                    <a href="#">Sharing Validation </a>
-                </div>
-            </div>
-
-            <div class="dropdown_mega_menu">
-                <button class="dropbtn">
-                    Inquire
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown_single_menu_content">
-                    <a href="#">Terminal Inquire</a>
-                    <a href="#">Workflow Inquire </a>
-                </div>
-            </div>
-
-            <div class="dropdown_mega_menu">
-                <button class="dropbtn">
-                  Module
+                    Module
                     <i class="fa fa-caret-down"></i>
                 </button>
                 <div class="dropdown_single_menu_content">
@@ -259,10 +180,10 @@
                 </div>
             </div>
 
-            <div class="navbar_mega_menu_right_align">
+			<div class="navbar_mega_menu_right_align">
                 <div class="dropdown_mega_menu">
                 	<button class="dropbtn" style="width: 100%;">
-		                {{Auth::user()->name}}
+		                {{Auth::user()->email}}
 		                <i class="fa fa-caret-down"></i>
                 	</button>
 					<div class="dropdown_single_menu_content">
@@ -276,10 +197,11 @@
 
 		        <div class="dropdown_mega_menu">
 		        </div>
+
   			</div>
 
+		</div>
 
-        </div>
 
 		<!-- Page Content -->
 		<div id="content">

@@ -104,6 +104,30 @@
 							</div>
 						</div>
 
+                        <div class="mb-1 row">
+							<label for="zone_id" class="col-sm-2 col-form-label-sm">Zone</label>
+							<div class="col-sm-10">
+								<select name="zone_id" id="zone_id" class="form-select form-select-sm">
+									@foreach($BRN['zone'] as $row)
+										@if($BRN['attributes']['zone_id'] == $row->zone_id)
+											<option value={{$row->zone_id}} selected>{{$row->zone_name}} </option>
+										@else
+											<option value={{$row->zone_id}}> {{$row->zone_name}} </option>
+										@endif
+									@endforeach
+									@if($BRN['attributes']['zone_id'] === 0)
+                                        <option value =0 selected>Select the Zone</option>
+                                    @endif
+								</select>
+								@if($BRN['attributes']['validation_messages']->has('zone_id'))
+                                    <script>
+                                            document.getElementById('zone_id').className = 'form-select form-select-sm is-invalid';
+                                    </script>
+                                    <div class="invalid-feedback">{{ $BRN['attributes']['validation_messages']->first("zone_id") }}</div>
+                                @endif
+							</div>
+						</div>
+
 						<div class="mb-1 row">
 							<label for="tid" class="col-sm-2 col-form-label-sm">Backup SNo.</label>
 							<div class="col-sm-4">

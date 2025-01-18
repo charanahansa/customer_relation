@@ -32,8 +32,11 @@ use App\Rules\NotValidation;
 use App\Rules\fsp\CourierValidation;
 use App\Rules\fsp\SubStatusValidation;
 use App\Rules\fsp\OfficerCourierValidation;
+use App\Traits\ZoneName;
 
 class FieldServiceAllocationController extends Controller {
+
+    use ZoneName;
 
     public function getForm(Request $request){
 
@@ -109,6 +112,7 @@ class FieldServiceAllocationController extends Controller {
 
 		$process['ticket_no'] = $request->ticket_number;
         $process['workflow_id'] = $request->workflow_id;
+        $data['zone_name'] = $this->getZoneName($request->workflow_id, $request->ticket_number);
 
         $data['status'] =  $objStatus->getBreakdownStatus();
         $data['attributes'] = $this->getFieldServiceAllocateAttributes($process, NULL);

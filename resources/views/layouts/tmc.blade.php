@@ -353,7 +353,6 @@
 		                <i class="fa fa-caret-down"></i>
                 	</button>
 					<div class="dropdown_single_menu_content">
-	                	<a href="#">Profile</a>
 	                	<a href="{{route('password_reset')}}">Password Reset</a>
 	                    <form method="POST" action="{{ route('logout') }}">
 	                          @csrf

@@ -331,7 +331,7 @@ class TerminalReleaseNoteController extends Controller {
             $release_jobcards_for_old_table[$icount]['Ref_No'] = '-';
             $release_jobcards_for_old_table[$icount]['R_Date'] = date("Y/m/d G:i:s");
             $release_jobcards_for_old_table[$icount]['R_By'] = Auth::user()->id;
-            $release_jobcards_for_old_table[$icount]['R_To'] = Auth::user()->name;
+            $release_jobcards_for_old_table[$icount]['R_To'] = User::where('id', $request->officer)->value('name');
             $release_jobcards_for_old_table[$icount]['remark'] = $request->remark;
 
             $objJobCardProcess = new JobCardProcess();

@@ -68,15 +68,15 @@ class ReInitilization extends Model{
 		// Field Service Team Lead
 		if(in_array("re_initialization_ftl_view", $tables)){
 
-			$ftl_query = " , ftl.tdate as 'ftl_date', ftl.contactno as 'ftl_contactno', 
-			                 o_ftl.officer_name as 'ftl_officer', co_ftl.officer_name as 'ftl_courier', bo_ftl.officer_name as 'ftl_bank_officer_name', 
-                             ftl.remark as 'ftl_remark', ss_ftl.status as 'ftl_sub_status', ftl.status as 'ftl_status', ftl.done_date_time as 'ftl_done_date_time', 
+			$ftl_query = " , ftl.tdate as 'ftl_date', ftl.contactno as 'ftl_contactno',
+			                 o_ftl.officer_name as 'ftl_officer', co_ftl.officer_name as 'ftl_courier', bo_ftl.officer_name as 'ftl_bank_officer_name',
+                             ftl.remark as 'ftl_remark', ss_ftl.status as 'ftl_sub_status', ftl.status as 'ftl_status', ftl.done_date_time as 'ftl_done_date_time',
                              ftl.email as 'ftl_email', ftl.email_on as 'ftl_email_on',
                              ftl.saved_by as 'ftl_saved_by', ftl.saved_on as 'ftl_saved_on', ftl.edit_by as 'ftl_last_edit_by', ftl.edit_on as 'ftl_last_edit_on' ";
 
-			$ftl_join = "   left outer join re_initialization_ftl_view ftl on ftl.ticketno = r.ticketno 
-                            left outer join re_initialization_sub_status ss_ftl on ftl.sub_status = ss_ftl.id 
-                            left outer join officers o_ftl on ftl.officer = o_ftl.id 
+			$ftl_join = "   left outer join re_initialization_ftl_view ftl on ftl.ticketno = r.ticketno
+                            left outer join re_initialization_sub_status ss_ftl on ftl.sub_status = ss_ftl.id
+                            left outer join officers o_ftl on ftl.officer = o_ftl.id
                             left outer join bank_officer bo_ftl on ftl.bank_officer = bo_ftl.id
                             left outer join courier co_ftl on co_ftl.id = ftl.courier	  ";
 		}
@@ -91,24 +91,24 @@ class ReInitilization extends Model{
                             tmc.saved_by as 'tmc_saved_by', tmc.saved_on as 'tmc_saved_on',
                             tmc.edit_by as 'tmc_edit_by', tmc.edit_on as 'tmc_edit_on' ";
 
-			$tmc_join = " 	left outer join re_initialization_tmc_view tmc on tmc.ticketno = r.ticketno 
-                            left outer join officers o_tmc on tmc.officer = o_tmc.id 
+			$tmc_join = " 	left outer join re_initialization_tmc_view tmc on tmc.ticketno = r.ticketno
+                            left outer join officers o_tmc on tmc.officer = o_tmc.id
                             left outer join re_initialization_sub_status ss_tmc on tmc.sub_status = ss_tmc.id
                             left outer join courier co_tmc on co_tmc.id = tmc.courier ";
-			
+
 			$tmc_where = " && (tmc.cancel = 0 or tmc.cancel is null) ";
 		}
 
 		// Terminal Programmer
 		if(in_array("re_initialization_tp_view", $tables)){
 
-			$tp_query = " , tp.tdate as 'tp_date', tp.contactno as 'tp_contactno', tp.contact_person as 'tp_contact_person', tp.model as 'tp_model', tp.serialno as 'tp_serialno', 
+			$tp_query = " , tp.tdate as 'tp_date', tp.contactno as 'tp_contactno', tp.contact_person as 'tp_contact_person', tp.model as 'tp_model', tp.serialno as 'tp_serialno',
                             tp.sim_no as 'tp_sim_no', tp.pod_no as 'tp_pod_no', tp.remark as 'tp_remark',
-                            o_tp.officer_name as 'tp_officer', ss_tp.status as 'tp_sub_status', 
+                            o_tp.officer_name as 'tp_officer', ss_tp.status as 'tp_sub_status',
                             tp.saved_by as 'tp_saved_by', tp.saved_on as 'tp_saved_on', tp.edit_by as 'tp_edit_by', tp.edit_on as 'tp_edit_on' ";
 
-			$tp_join = " left outer join re_initialization_tp_view tp on tp.ticketno = r.ticketno 
-                         left outer join officers o_tp on tp.officer = o_tp.id 
+			$tp_join = " left outer join re_initialization_tp_view tp on tp.ticketno = r.ticketno
+                         left outer join officers o_tp on tp.officer = o_tp.id
                          left outer join re_initialization_sub_status ss_tp on tp.sub_status = ss_tp.id  ";
 		}
 
@@ -116,15 +116,15 @@ class ReInitilization extends Model{
 		if(in_array("re_initialization_fs_view", $tables)){
 
 			$fs_query = " , fs.tdate as 'fs_date', fs.model as 'fs_model', fs.serialno as 'fs_serialno', fs.merchant as 'fs_merchant',
-                            fs.contactno as 'fs_contactno', fs.contact_person as 'fs_contact_person', 
+                            fs.contactno as 'fs_contactno', fs.contact_person as 'fs_contact_person',
                             fs.remark as 'fs_remark', ss_fs.status as 'fs_sub_status', fs.status as 'fs_status', fs.done_date_time as 'fs_done_date_time',
                             fs.email as 'fs_email', fs.email_on as 'fs_email_on', fs.saved_by as 'fs_saved_by', fs.saved_on as 'fs_saved_on', fs.edit_by as 'fs_edit_by', fs.edit_on as 'fs_edit_on' ";
 
-			$fs_join = "    left outer join re_initialization_fs_view fs on fs.ticketno = r.ticketno 
+			$fs_join = "    left outer join re_initialization_fs_view fs on fs.ticketno = r.ticketno
                             left outer join re_initialization_sub_status ss_fs on fs.sub_status = ss_fs.id";
 		}
 
-		$sql_query = "  select		r.ticketno, r.tdate, r.bank, r.tid, r.model, r.serialno, r.merchant, o.officer_name, co.officer_name, bo.officer_name as 'bank_officer', 
+		$sql_query = "  select		r.ticketno, r.tdate, r.bank, r.tid, r.model, r.serialno, r.merchant, o.officer_name, co.officer_name as 'courier', bo.officer_name as 'bank_officer',
                                     r.contactno, r.contact_person, r.remark, '' as 'Reasons', ss.status as 'sub_status', r.status, r.done_date_time,
                                     r.email, r.email_on, r.cancel, r.cancel_reason, r.cancel_by, r.cancel_on,
                                     r.saved_by, r.saved_on, r.edit_by, r.edit_on
@@ -133,7 +133,7 @@ class ReInitilization extends Model{
 									" . $tmc_query ."
 									" . $tp_query ."
 									" . $fs_query ."
-					
+
                         from		re_initialization r
                                         left outer join officers o on r.officer = o.id
                                         left outer join courier co on r.courier = co.id
@@ -144,8 +144,8 @@ class ReInitilization extends Model{
 									". $tmc_join ."
 									". $tp_join ."
 									". $fs_join ."
-						
-						where		r.cancel = 0 && r.tdate between ? and ? " . $total_filter . " 
+
+						where		r.cancel = 0 && r.tdate between ? and ? " . $total_filter . "
 									" . $tmc_where . "
 						order by    r.tdate desc, r.ticketno desc ";
 

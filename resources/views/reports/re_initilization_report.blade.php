@@ -49,8 +49,8 @@
 								<label for="todate" class="col-sm-3 col-form-label-sm">To TID</label>
 								<div class="col-sm-3">
 									<input type="text" name="to_tid" id="to_tid" class="form-control form-control-sm" value="">
-								</div>	
-							</div>	
+								</div>
+							</div>
 
 							<div class="form-row">
 								<label for="fromdate" class="col-sm-3 col-form-label-sm">From Serial No</label>
@@ -61,7 +61,7 @@
 								<label for="todate" class="col-sm-3 col-form-label-sm">To Serial No</label>
 								<div class="col-sm-3">
 									<input type="text" name="to_serialno" id="to_serialno" class="form-control form-control-sm" value="">
-								</div>	
+								</div>
 							</div>
 
 							<div class="form-row">
@@ -74,7 +74,7 @@
 									</select>
 								</div>
 							</div>
-		
+
 						</div>
 
 					</div>
@@ -99,10 +99,10 @@
 									<select  name="bank[]" class="form-control form-control-sm" id="bank" multiple style="height:300px; width:100%; " size="20" >
 										@foreach($New['bank'] as $banks)
 											<option value="{{$banks->bank}}"> {{$banks->bank}} </option>
-										@endforeach		
+										@endforeach
 									</select>
 								</div>
-								
+
 							</div>
 						</div>
 
@@ -127,10 +127,10 @@
 									<select  name="model[]" class="form-control form-control-sm" id="model" multiple style="height:300px; width:100%; " size="20" >
 										@foreach($New['model'] as $models)
 											<option value="{{$models->model}}"> {{$models->model}} </option>
-										@endforeach		
+										@endforeach
 									</select>
 								</div>
-								
+
 							</div>
 						</div>
 
@@ -154,16 +154,16 @@
 									<select  name="officer[]" class="form-control form-control-sm" id="officer" multiple style="height:300px; width:100%; " size="20" >
 										@foreach($New['officers'] as $officers)
 											<option value="{{$officers->ID}}"> {{$officers->officer_name}} </option>
-										@endforeach	
+										@endforeach
 									</select>
 								</div>
-								
+
 							</div>
 						</div>
 
 					</div>
 					</div>
-			     
+
 			    </div>
 
 				<div class="carousel-item">
@@ -182,16 +182,16 @@
 									<select  name="sub_status[]" class="form-control form-control-sm" id="sub_status" multiple style="height:300px; width:100%; " size="20" >
 										@foreach($New['sub_status'] as $sub_status)
 											<option value="{{$sub_status->id}}"> {{$sub_status->status}} </option>
-										@endforeach			
+										@endforeach
 									</select>
 								</div>
-								
+
 							</div>
 						</div>
 
 					</div>
 					</div>
-			     
+
 			    </div>
 
 				<div class="carousel-item">
@@ -210,16 +210,16 @@
 									<select  name="status[]" class="form-control form-control-sm" id="status" multiple style="height:300px; width:100%; " size="20" >
 										@foreach($New['status'] as $status)
 											<option value="{{$status->codeid}}"> {{$status->description}} </option>
-										@endforeach		
+										@endforeach
 									</select>
 								</div>
-								
+
 							</div>
 						</div>
 
 					</div>
 					</div>
-			     
+
 			    </div>
 
 				<div class="carousel-item">
@@ -236,20 +236,20 @@
 							<div class="form-row">
 								<div class="col-sm-12">
 									<select  name="tables[]" class="form-control form-control-sm" id="tables" multiple style="height:300px; width:100%; " size="20" >
-										<option value='re_initialization'>Re Initialization</option>
+										<option value='re_initialization' selected>Re Initialization</option>
 										<option value='re_initialization_ftl_view'>Re Initialization Field Service Team Lead</option>
 										<option value='re_initialization_tmc_view'>Re Initialization Tmc</option>
-										<option value='re_initialization_tp_view'>Re Initialization Terminal Programmer</option> 
+										<option value='re_initialization_tp_view'>Re Initialization Terminal Programmer</option>
 										<option value='re_initialization_fs_view'>Re Initialization Field Service Officer</option>
 									</select>
 								</div>
-								
+
 							</div>
 						</div>
 
 					</div>
 					</div>
-			     
+
 			    </div>
 
 				<div class="carousel-item">
@@ -268,13 +268,13 @@
 								<div class="col-sm-12">
 									<input type="submit" name="submit" id="submit" value="Generate" style="width: 100%" class="btn btn-success">
 								</div>
-								
+
 							</div>
 						</div>
 
 					</div>
 					</div>
-			     
+
 			    </div>
 
 			</div>
@@ -292,7 +292,7 @@
 	</form>
 
 
-           
+
     <script>
 
         $("#from_date").datetimepicker(

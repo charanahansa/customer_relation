@@ -10,7 +10,11 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 
+use App\Traits\TimeZone;
+
 class NewInstallationReportController extends Controller {
+
+    use TimeZone;
 
     public function __construct(){
 
@@ -162,6 +166,8 @@ class NewInstallationReportController extends Controller {
 		$sheet->setCellValue($this->getExcelColumn($col_count) . '2', 'Sub Status'); $col_count++;
 		$sheet->setCellValue($this->getExcelColumn($col_count) . '2', 'Status'); $col_count++;
 		$sheet->setCellValue($this->getExcelColumn($col_count) . '2', 'Done Date Time'); $col_count++;
+        $sheet->setCellValue($this->getExcelColumn($col_count) . '2', 'Time Zone'); $col_count++;
+        $sheet->setCellValue($this->getExcelColumn($col_count) . '2', 'SLA Met'); $col_count++;
 		$sheet->setCellValue($this->getExcelColumn($col_count) . '2', 'Email'); $col_count++;
 		$sheet->setCellValue($this->getExcelColumn($col_count) . '2', 'Email_On'); $col_count++;
 		$sheet->setCellValue($this->getExcelColumn($col_count) . '2', 'Cancel'); $col_count++;
@@ -286,12 +292,13 @@ class NewInstallationReportController extends Controller {
 		$sheet->getStyle('A2:' . $last_heading_cell_address)->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('49fc03');
 
 
-
 		$icount = 3;
 		$column_count = 1;
 		foreach($resultset as $row){
 
 			$col_count = 1;
+
+            $timeZone = $this->checkSLA('newinstall', $row->ticketno);
 
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->ticketno);  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->tdate);  $col_count++;
@@ -314,6 +321,8 @@ class NewInstallationReportController extends Controller {
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->sub_status);  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, ucfirst($row->status));  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->done_date_time);  $col_count++;
+            $sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $timeZone['timeZoneName']);  $col_count++;
+            $sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $timeZone['slaMet']);  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $this->YesNo($row->email));  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $row->email_on);  $col_count++;
 			$sheet->setCellValue($this->getExcelColumn($col_count) . $icount, $this->YesNo($row->cancel));  $col_count++;

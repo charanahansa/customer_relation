@@ -30,6 +30,8 @@
                                         <option value="action_taken" {{ $type === 'action_taken' ? 'selected' : '' }}>Action Taken</option>
                                         <option value="re_initialization_reason" {{ $type === 're_initialization_reason' ? 'selected' : '' }}>Re Initialization Reason</option>
                                         <option value="zone" {{ $type === 'zone' ? 'selected' : '' }}>Zones</option>
+                                        <option value="buyer" {{ $type === 'user' ? 'selected' : '' }}>Buyer</option>
+                                        <option value="user" {{ $type === 'user' ? 'selected' : '' }}>Users</option>
                                     </select>
                                 </div>
                                 <!-- Search box -->
@@ -77,6 +79,14 @@
                                         @elseif($type === 're_initialization_reason')
                                             <th>RI ID</th>
                                             <th>Reason</th>
+                                            <th>Active</th>
+                                        @elseif($type === 'buyer')
+                                            <th>Buyer ID</th>
+                                            <th>Buyer Name</th>
+                                            <th>Active</th>
+                                        @elseif($type === 'user')
+                                            <th>User ID</th>
+                                            <th>Name</th>
                                             <th>Active</th>
                                         @endif
                                         <th>Actions</th>
@@ -135,6 +145,20 @@
                                                 <td>{{ $item->active ? 'Yes' : 'No' }}</td>
                                                 <td>
                                                     <a href="{{ route('reinitialization_reason_updation', $item->ono) }}" class="btn btn-primary btn-sm w-100">Edit</a>
+                                                </td>
+                                            @elseif($type === 'buyer')
+                                                <td>{{ $item->buyer_id }}</td>
+                                                <td>{{ $item->buyer_name}}</td>
+                                                <td>{{ $item->active ? 'Yes' : 'No' }}</td>
+                                                <td>
+                                                    <a href="{{ route('buyer_updation', $item->buyer_id) }}" class="btn btn-primary btn-sm w-100">Edit</a>
+                                                </td>
+                                            @elseif($type === 'user')
+                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $item->name}}</td>
+                                                <td>{{ $item->active ? 'Yes' : 'No' }}</td>
+                                                <td>
+                                                    <a href="{{ route('user_updation', $item->id) }}" class="btn btn-primary btn-sm w-100">Edit</a>
                                                 </td>
                                             @endif
                                         </tr>

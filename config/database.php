@@ -65,11 +65,11 @@ return [
 
         'mysql2' => [
             'driver'    => 'mysql',
-            'host'      => '192.168.160.28',
+            'host'      => '127.0.0.1',
             'port'      => '3306',
             'database'  => 'hardwarelive',
-            'username'  => 'bu',
-            'password'  => 'Buddhi@123??',
+            'username'  => 'root',
+            'password'  => 'linux',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',

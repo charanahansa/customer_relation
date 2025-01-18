@@ -117,7 +117,6 @@ class SparePartReceiveNoteController extends Controller {
             $attributes['process_message'] = '<div class="alert alert-danger" role="alert"> '. $message .' </div> ';
 
 			return $attributes;
-
 		}
     }
 

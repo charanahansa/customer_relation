@@ -29,10 +29,9 @@
 @endsection
 <script>
 
-    setInterval(myTimer, (1000 * 60 * 3));
+    // setInterval(myTimer, (1000 * 60 * 3));
+    // function myTimer() {
+    //     document.getElementById('submit').click();
+    // }
 
-    function myTimer() {
-
-        document.getElementById('submit').click();
-    }
 </script>

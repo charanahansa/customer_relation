@@ -115,6 +115,13 @@
 
                     @endif
 
+                    <div class="mb-1 row">
+                        <label for="zone" class="col-sm-2 col-form-label-sm">Zone</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="zone" id="zone" class="form-control form-control-sm" value="{{$FSA['zone_name']}}" readonly>
+                        </div>
+                    </div>
+
                 </div>
                 </div>
 
@@ -436,7 +443,7 @@
 						<h5 class="modal-title" id="HistoryModalLabel">Breakdown Ticket History</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					
+
 					<div class="modal-body">
 						@foreach($FSA['history']  as $row)
 
@@ -455,7 +462,7 @@
 
 		<!-- Field Service Modal -->
 		<div class="modal fade" id="FieldServiceModal" tabindex="-1" aria-labelledby="FieldServiceModalLabel" aria-hidden="true">
-			
+
 			<div class="modal-dialog modal-fullscreen">
 
 				<div class="modal-content">
@@ -464,7 +471,7 @@
 						<h5 class="modal-title" id="FieldServiceModalLabel"> Field Service </h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					
+
 					<div class="modal-body">
 
 						<div class="row no-gutters">
@@ -593,7 +600,7 @@
 				                        <div class="col-sm-10">
 				                            <textarea  name="fs_remark" id="fs_remark" class="form-control" rows="2" style="resize:none" readonly>{{$row->remark}}</textarea>
 										</div>
-				                    </div>									
+				                    </div>
 
 									<div class="mb-1 row">
 				                        <label for="fromdate" class="col-sm-2 col-form-label-sm">Sub Status</label>
@@ -627,8 +634,8 @@
 							</div>
 
 							<div class="col-12 col-sm-6 col-md-6">
-							<div style="margin-left: 1%; margin-right: 1%;">								
-								
+							<div style="margin-left: 1%; margin-right: 1%;">
+
 								@if( $FSA['attributes']['workflow_id'] == 1 )
 
 									<h5 style='font-family: Consolas; font-size: 16px;'> <u> Faults </u></h5>
@@ -686,7 +693,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.js" integrity="sha512-+UiyfI4KyV1uypmEqz9cOIJNwye+u+S58/hSwKEAeUMViTTqM9/L4lqu8UxJzhmzGpms8PzFJDzEqXL9niHyjA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <script type="text/javascript">
-	
+
 	$("#done_date_time").datetimepicker(
 		{
 			format:'Y/m/d H:i:s',
@@ -695,7 +702,7 @@
 	);
 
 </script>
-	
+
 </div>
 
 

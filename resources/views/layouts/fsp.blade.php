@@ -252,16 +252,12 @@
                         <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown_single_menu_content">
-                        <a href="#">User Register</a>
-                        <a href="#">User List</a>
                         <a href="{{route('password_reset')}}">Password Reset</a>
-
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                         </a>
-
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
