@@ -80,15 +80,15 @@ class IndividualEmailController extends Controller {
             foreach ($colSmsRequest as $value) {
 
                 $response = $this->sendSms(
-                    ucfirst($value->ref) . ' Ticket',
-                    'Ticket No. ' . $value->ticketno,
-                    $value->office_mobile,
-                    $value->message
-                );
+                                            ucfirst($value->ref) . ' Ticket',
+                                            'Ticket No. ' . $value->ticketno,
+                                            $value->office_mobile,
+                                            $value->message
+                                        );
 
                 if (isset($response['serverRef'])) {
 
-                    DB::table('sms_request')->where('id', $value->id)->update(['sent' => 1, 'sent_at' => now()]);
+                    DB::table('sms_request')->where('id', $value->req_id)->update(['sent' => 1]);
                 } else {
 
                     Log::warning('SMS sending failed for request ID: ' . $value->req_id . '  ' . $value->ref . '  ' . $value->ticketno);
